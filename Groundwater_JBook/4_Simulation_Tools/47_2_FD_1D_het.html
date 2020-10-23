@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>unconfined aquifer 1D &#8212; Groundwater I</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://tu-dresden.de/bu/umwelt/hydro/igw/Groundwater_JBook/4_Simulation_Tools/47_2_FD_1D_het.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://tu-dresden.de/bu/umwelt/hydro/igw/Groundwater_JBook/4_Simulation_Tools/47_2_FD_1D_het.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="unconfined aquifer 1D" />
+<meta property="og:description" content="unconfined aquifer 1D  #Initialize librarys import matplotlib.pyplot as plt import numpy as np import math from ipywidgets import *  Equation  To calculate the " />
+
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Groundwater I</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   The Interactive Groundwater-I Book
+  </a>
+ </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Groundwater_JBook/4_Simulation_Tools/47_2_FD_1D_het.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/prabhasyadav/Groundwater-I/gh-pages?urlpath=tree/Groundwater_JBook/4_Simulation_Tools/47_2_FD_1D_het.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#equation">
+   Equation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tasks">
+   Tasks
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#illustration-of-the-correlations">
+   Illustration of the correlations
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="unconfined-aquifer-1d">
+<h1>unconfined aquifer 1D<a class="headerlink" href="#unconfined-aquifer-1d" title="Permalink to this headline">¶</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Initialize librarys</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">ipywidgets</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="equation">
+<h2>Equation<a class="headerlink" href="#equation" title="Permalink to this headline">¶</a></h2>
+<p>To calculate the water level and the flow rates of an unstressed aquifer, the following formula can be used:</p>
+<div class="math notranslate nohighlight">
+\[q'_x = \frac{K \cdot (h_2^2-h_1^2)}{2L}+R\cdot(\frac{L}{2}-x)\]</div>
+<div class="math notranslate nohighlight">
+\[h(x)=\sqrt{h_1^2 + \frac{h_2^2-h_1^2}{L} \cdot x+\frac{R}{K} \cdot x \cdot(L-x)}\]</div>
+<p>with<br />
+<span class="math notranslate nohighlight">\(q'\)</span> = flow per unit width <span class="math notranslate nohighlight">\([m^2/s]\)</span>,
+<span class="math notranslate nohighlight">\(h\)</span> = head at x <span class="math notranslate nohighlight">\([m]\)</span>,<br />
+<span class="math notranslate nohighlight">\(x\)</span> = distance from the origin <span class="math notranslate nohighlight">\([m]\)</span>,
+<span class="math notranslate nohighlight">\(h_1\)</span> = head at the origin <span class="math notranslate nohighlight">\([m]\)</span>,
+<span class="math notranslate nohighlight">\(h_2\)</span> = head at L <span class="math notranslate nohighlight">\([m]\)</span>,
+<span class="math notranslate nohighlight">\(L\)</span> = distance from the origin at the point <span class="math notranslate nohighlight">\(H_u\)</span> is measured <span class="math notranslate nohighlight">\([m]\)</span>,
+<span class="math notranslate nohighlight">\(K\)</span> = hydraulic conductivity <span class="math notranslate nohighlight">\([m/s]\)</span>,
+<span class="math notranslate nohighlight">\(R\)</span> = recharge rate <span class="math notranslate nohighlight">\([m/s]\)</span></p>
+<p>If the groundwater level is exposed to infiltration, a watershed may occur. The distance of the divide from the origin and the head at this point can be calculated with the next equations.</p>
+<div class="math notranslate nohighlight">
+\[d=\frac{L}{2} + \frac{K\cdot (h_2^2-h_1^2)}{R \cdot 2L}\]</div>
+<div class="math notranslate nohighlight">
+\[h_{max}=\sqrt{h_1^2- \frac{(h_1^2-h_2^2) \cdot d}{L}+\frac{R}{K} \cdot (L-d) \cdot d}\]</div>
+<p>with
+<span class="math notranslate nohighlight">\(d\)</span> = distance from origin to water divide,
+<span class="math notranslate nohighlight">\(h_{max}\)</span> = elevation at water table divide</p>
+</div>
+<div class="section" id="tasks">
+<h2>Tasks<a class="headerlink" href="#tasks" title="Permalink to this headline">¶</a></h2>
+<p><em>Info: The diagram below can be used to solve some tasks as well.</em></p>
+<p><strong>1. Unconfined aquifer without recharge</strong></p>
+<p>An unconfined aquifer is 5000m long and has a hydraulic conductivity of 0.005 m/s and a groundwater recharge rate of 0 mm/a. The water level on the right side is 3 m and on the left side 4 m.</p>
+<p><strong>a)</strong> Calculate the respective flow rates.</p>
+<p><strong>b)</strong> Does an in- or outflow take place at the boundaries of the model?</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m</span><span class="se">\033</span><span class="s2">[4mTask 1a</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Let us find the flow rates.</span><span class="se">\n\n\033</span><span class="s2">[1mProvieded are:</span><span class="se">\033</span><span class="s2">[0m &quot;</span><span class="p">)</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="mi">5000</span> <span class="c1">#m, distance</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">0.005</span> <span class="c1">#m/s, conductivity</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#mm/a, recharge</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#m, head left</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1">#m, head right</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distance = </span><span class="si">{}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">Hydraulic conductivity = </span><span class="si">{}</span><span class="s2"> m/s</span><span class="se">\n</span><span class="s2">Recharge = </span><span class="si">{}</span><span class="s2"> mm/a</span><span class="se">\n</span><span class="s2">Head left = </span><span class="si">{}</span><span class="s2">m</span><span class="se">\n</span><span class="s2">Head right = </span><span class="si">{}</span><span class="s2">m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">))</span>
+
+<span class="c1">#intermediate calculations</span>
+<span class="n">R_ms</span> <span class="o">=</span> <span class="n">R</span><span class="o">/</span><span class="mi">1000</span><span class="o">/</span><span class="mi">86400</span><span class="o">/</span><span class="mf">365.25</span>
+
+<span class="c1">#solution</span>
+<span class="n">q_v</span> <span class="o">=</span> <span class="n">R_ms</span> <span class="o">*</span> <span class="n">L</span> <span class="o">*</span> <span class="mi">86400</span> 
+<span class="n">q_l</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">R_ms</span><span class="o">*</span><span class="n">L</span><span class="o">+</span><span class="n">K</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="mi">86400</span> 
+<span class="n">q_r</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">R_ms</span><span class="o">*</span><span class="n">L</span><span class="o">+</span><span class="n">K</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="mi">86400</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mSolution</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">The flow rate on the left side amounts to </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m while it is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m on the right side.</span><span class="se">\n</span><span class="s2">Since there is no groundwater recharge, the vertical inflow is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span><span class="n">q_r</span><span class="p">,</span><span class="n">q_v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Task 1a</span>
+
+Let us find the flow rates.
+
+<span class=" -Color -Color-Bold">Provieded are:</span> 
+Distance = 5000 m
+Hydraulic conductivity = 0.005 m/s
+Recharge = 0 mm/a
+Head left = 4m
+Head right = 3m
+
+<span class=" -Color -Color-Bold">Solution</span>
+The flow rate on the left side amounts to 0.3024 m³/d/m while it is 0.3024 m³/d/m on the right side.
+Since there is no groundwater recharge, the vertical inflow is 0.0 m³/d/m.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m</span><span class="se">\033</span><span class="s2">[4mTask 1b</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Let us find the direction of the flow on the left and right side of the model.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mSolution</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">For this purpose we have to look on the flow rates of each side.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">q_l</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the left boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore greater than 0. Accordingly, there is an inflow from the left.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_l</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">q_l</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the left boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore less than 0. Accordingly, there is an outflow to the left.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_l</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">q_r</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the right boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore greater than 0. Accordingly, there is an outflow from the right.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_r</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">q_r</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the right boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore greater than 0. Accordingly, there is an inflow from the right.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_r</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Task 1b</span>
+
+Let us find the direction of the flow on the left and right side of the model.
+
+<span class=" -Color -Color-Bold">Solution</span>
+For this purpose we have to look on the flow rates of each side.
+
+The flow rate at the left boundary of the model is 0.3024 m³/d/m and is therefore greater than 0. Accordingly, there is an inflow from the left.
+The flow rate at the right boundary of the model is 0.3024 m³/d/m and is therefore greater than 0. Accordingly, there is an outflow from the right.
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>2. Unconfined aquifer with recharge</strong></p>
+<p>Another unconfined aquifer has the same parameters as the aquifer mentioned in the first task. Only here a groundwater recharge of 200 mm/a takes place.</p>
+<p><strong>a)</strong> Calculate the flow rates for this case.</p>
+<p><strong>b)</strong> Does an in- or outflow take place at the boundaries of the model?</p>
+<p><strong>c)</strong> Does a ground water divide exist? If so, determine the location and the water level at this point.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m</span><span class="se">\033</span><span class="s2">[4mTask 2a</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Let us find the flow rates.</span><span class="se">\n\n\033</span><span class="s2">[1mProvieded are:</span><span class="se">\033</span><span class="s2">[0m &quot;</span><span class="p">)</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="mi">5000</span> <span class="c1">#m, distance</span>
+<span class="n">K</span> <span class="o">=</span> <span class="mf">0.005</span> <span class="c1">#m/s, conductivity</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mi">200</span> <span class="c1">#mm/a, recharge</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="mi">4</span> <span class="c1">#m, head left</span>
+<span class="n">h2</span> <span class="o">=</span> <span class="mi">3</span> <span class="c1">#m, head right</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Distance = </span><span class="si">{}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">Hydraulic conductivity = </span><span class="si">{}</span><span class="s2"> m/s</span><span class="se">\n</span><span class="s2">Recharge = </span><span class="si">{}</span><span class="s2"> mm/a</span><span class="se">\n</span><span class="s2">Head left = </span><span class="si">{}</span><span class="s2">m</span><span class="se">\n</span><span class="s2">Head right = </span><span class="si">{}</span><span class="s2">m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="n">K</span><span class="p">,</span><span class="n">R</span><span class="p">,</span><span class="n">h1</span><span class="p">,</span><span class="n">h2</span><span class="p">))</span>
+
+<span class="c1">#intermediate calculations</span>
+<span class="n">R_ms</span> <span class="o">=</span> <span class="n">R</span><span class="o">/</span><span class="mi">1000</span><span class="o">/</span><span class="mi">86400</span><span class="o">/</span><span class="mf">365.25</span>
+
+<span class="c1">#solution</span>
+<span class="n">q_v</span> <span class="o">=</span> <span class="n">R_ms</span> <span class="o">*</span> <span class="n">L</span> <span class="o">*</span> <span class="mi">86400</span> 
+<span class="n">q_l</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">R_ms</span><span class="o">*</span><span class="n">L</span><span class="o">+</span><span class="n">K</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="mi">86400</span> 
+<span class="n">q_r</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">R_ms</span><span class="o">*</span><span class="n">L</span><span class="o">+</span><span class="n">K</span><span class="o">/</span><span class="n">L</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">*</span><span class="mi">86400</span> 
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mSolution:</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">The flow rate on the left side amounts to </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m while it is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m on the right side.</span><span class="se">\n</span><span class="s2">The vertical inflow in this case is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_l</span><span class="p">,</span><span class="n">q_r</span><span class="p">,</span><span class="n">q_v</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Task 2a</span>
+
+Let us find the flow rates.
+
+<span class=" -Color -Color-Bold">Provieded are:</span> 
+Distance = 5000 m
+Hydraulic conductivity = 0.005 m/s
+Recharge = 200 mm/a
+Head left = 4m
+Head right = 3m
+
+<span class=" -Color -Color-Bold">Solution:</span>
+The flow rate on the left side amounts to -1.067 m³/d/m while it is 1.671 m³/d/m on the right side.
+The vertical inflow in this case is 2.738 m³/d/m.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m</span><span class="se">\033</span><span class="s2">[4mTask 2b</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Let us find the direction of the flow on the left and right side of the model.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mSolution</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">The procedure is the same as in task 1b.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">q_l</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the left boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore greater than 0. Accordingly, there is an inflow from the left.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_l</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">q_l</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the left boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore less than 0. Accordingly, there is an outflow to the left.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_l</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">q_r</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the right boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore greater than 0. Accordingly, there is an outflow from the right.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_r</span><span class="p">))</span>
+<span class="k">if</span> <span class="n">q_r</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The flow rate at the right boundary of the model is </span><span class="si">{:02.4}</span><span class="s2"> m³/d/m and is therefore greater than 0. Accordingly, there is an inflow from the right.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">q_r</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Task 2b</span>
+
+Let us find the direction of the flow on the left and right side of the model.
+
+<span class=" -Color -Color-Bold">Solution</span>
+The procedure is the same as in task 1b.
+
+The flow rate at the left boundary of the model is -1.067 m³/d/m and is therefore less than 0. Accordingly, there is an outflow to the left.
+The flow rate at the right boundary of the model is 1.671 m³/d/m and is therefore greater than 0. Accordingly, there is an outflow from the right.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1m</span><span class="se">\033</span><span class="s2">[4mTask 2c</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Let us find the head of the groundwater divide and its location.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mSolution:</span><span class="se">\033</span><span class="s2">[0m</span><span class="se">\n</span><span class="s2">The formation of a groundwater divide depends on groundwater recharge. If this is less than or equal to the minimum groundwater recharge, there is no watershed for this simple case.</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1">#solution</span>
+<span class="n">R_min_ms</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span> 
+<span class="n">R_min</span> <span class="o">=</span> <span class="n">R_min_ms</span><span class="o">*</span><span class="mi">1000</span><span class="o">*</span><span class="mi">86400</span><span class="o">*</span><span class="mi">365</span>
+<span class="k">if</span> <span class="n">R_ms</span> <span class="o">&gt;</span> <span class="n">R_min_ms</span><span class="p">:</span>
+    <span class="n">d</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">L</span><span class="o">+</span><span class="n">K</span><span class="o">/</span><span class="n">R_ms</span><span class="o">*</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="p">)</span>    
+    <span class="n">h_max</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">d</span><span class="o">/</span><span class="n">L</span><span class="o">+</span><span class="n">R_ms</span><span class="o">/</span><span class="n">K</span><span class="o">*</span><span class="n">d</span><span class="o">*</span><span class="p">(</span><span class="n">L</span><span class="o">-</span><span class="n">d</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The head of the groundwaser divide is </span><span class="si">{:02.4}</span><span class="s2"> m and is located at a distance of </span><span class="si">{:02.4}</span><span class="s2"> m from the left side.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h_max</span><span class="p">,</span><span class="n">d</span><span class="p">))</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no groundwater divide in this model domain&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">Task 2c</span>
+
+Let us find the head of the groundwater divide and its location.
+
+<span class=" -Color -Color-Bold">Solution:</span>
+The formation of a groundwater divide depends on groundwater recharge. If this is less than or equal to the minimum groundwater recharge, there is no watershed for this simple case.
+
+The head of the groundwaser divide is 4.562 m and is located at a distance of 1.948e+03 m from the left side.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="illustration-of-the-correlations">
+<h2>Illustration of the correlations<a class="headerlink" href="#illustration-of-the-correlations" title="Permalink to this headline">¶</a></h2>
+<p>On the basis of this diagram, the relationships between the individual parameters and the water level can be observed.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Definition of the function</span>
+<span class="k">def</span> <span class="nf">head</span><span class="p">(</span><span class="n">h1</span><span class="p">,</span> <span class="n">h2</span><span class="p">,</span><span class="n">L</span><span class="p">,</span> <span class="n">K</span><span class="p">,</span> <span class="n">R</span><span class="p">):</span>
+    <span class="n">R_ms</span> <span class="o">=</span> <span class="n">R</span><span class="o">/</span><span class="mi">1000</span><span class="o">/</span><span class="mi">86400</span><span class="o">/</span><span class="mf">365.25</span> 
+    <span class="n">R_min_ms</span> <span class="o">=</span> <span class="n">K</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">L</span><span class="o">**</span><span class="mi">2</span> 
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">,</span> <span class="n">L</span><span class="o">/</span><span class="mi">1000</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span><span class="p">(</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">h2</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="n">h1</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="n">L</span><span class="o">+</span><span class="n">R_ms</span><span class="o">/</span><span class="n">K</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="n">L</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">**</span><span class="mf">0.5</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;head [m]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">35</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;distance [m]&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span>
+    <span class="n">max_y</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+    <span class="n">max_x</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">h</span><span class="o">.</span><span class="n">argmax</span><span class="p">()]</span>
+    <span class="k">if</span> <span class="n">R_ms</span> <span class="o">&gt;</span> <span class="n">R_min_ms</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The groundwater devide is located at  </span><span class="si">{:02.2}</span><span class="s2"> m and the head at divide amounts to </span><span class="si">{:02.2}</span><span class="s2"> m.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no groundwater divide in this model domain.&quot;</span><span class="p">)</span>
+        
+<span class="n">interact</span><span class="p">(</span><span class="n">head</span><span class="p">,</span>
+         <span class="n">h1</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">BoundedFloatText</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Head left [m]:&#39;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+         <span class="n">h2</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">BoundedFloatText</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Head right [m]:&#39;</span><span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+         <span class="n">L</span><span class="o">=</span> <span class="n">widgets</span><span class="o">.</span><span class="n">BoundedFloatText</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5000</span><span class="p">,</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span><span class="n">step</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;Distance [m]:&#39;</span> <span class="p">,</span> <span class="n">disabled</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+         <span class="n">R</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">500</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">10</span><span class="p">),</span> 
+         <span class="n">K</span><span class="o">=</span><span class="n">widgets</span><span class="o">.</span><span class="n">FloatLogSlider</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mf">0.0002</span><span class="p">,</span><span class="n">base</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="nb">min</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="nb">max</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="s1">&#39;K [m/s]:&#39;</span><span class="p">,</span> <span class="n">readout_format</span><span class="o">=</span><span class="s1">&#39;.5f&#39;</span><span class="p">))</span>
+
+    
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"version_major": 2, "version_minor": 0, "model_id": "3f7fdd634e6941f7ac24849e020e44cf"}
+</script><div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;function __main__.head(h1, h2, L, K, R)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<script type="application/vnd.jupyter.widget-state+json">
+{"state": {"bceeeab084e643a1a36ce2db42f7d3a2": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "21acf6ec059144fca29d40a9dcd87a8d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "e511b4325358464b96ca01c94ec956e1": {"model_name": "BoundedFloatTextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "BoundedFloatTextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatTextView", "continuous_update": false, "description": "Head left [m]:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_bceeeab084e643a1a36ce2db42f7d3a2", "max": 1000.0, "min": 0.0, "step": 0.5, "style": "IPY_MODEL_21acf6ec059144fca29d40a9dcd87a8d", "value": 4.0}}, "8bf223ff60444cd3947b7f1534d30e46": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "20d3b2d1a28147e69c36ca09999f02a4": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "6d3f48321df847d5871fbfafb3a04c81": {"model_name": "BoundedFloatTextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "BoundedFloatTextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatTextView", "continuous_update": false, "description": "Head right [m]:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_8bf223ff60444cd3947b7f1534d30e46", "max": 1000.0, "min": 0.0, "step": 0.5, "style": "IPY_MODEL_20d3b2d1a28147e69c36ca09999f02a4", "value": 3.0}}, "f3f1fe547209448ab53305691bded777": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3b4c1310afa841c9a8356ae9ca5faa3d": {"model_name": "DescriptionStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "DescriptionStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": ""}}, "44db3a2d6b7848f793824992f15b82c5": {"model_name": "BoundedFloatTextModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "BoundedFloatTextModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatTextView", "continuous_update": false, "description": "Distance [m]:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_f3f1fe547209448ab53305691bded777", "max": 10000.0, "min": 0.0, "step": 0.5, "style": "IPY_MODEL_3b4c1310afa841c9a8356ae9ca5faa3d", "value": 5000.0}}, "e582745538f648138e50bd9ea4bcfb8a": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "b2834f8298cf468ebb9566f14bd97e9d": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "e0d33849fa9844919c506448fac54ed1": {"model_name": "FloatLogSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "FloatLogSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "FloatLogSliderView", "base": 10.0, "continuous_update": true, "description": "K [m/s]:", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_e582745538f648138e50bd9ea4bcfb8a", "max": -2.0, "min": -6.0, "orientation": "horizontal", "readout": true, "readout_format": ".5f", "step": 0.0001, "style": "IPY_MODEL_b2834f8298cf468ebb9566f14bd97e9d", "value": 0.0002}}, "f1d997e2c92444998e2ecefdaa13901e": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "3f7fdd634e6941f7ac24849e020e44cf": {"model_name": "VBoxModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": ["widget-interact"], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "VBoxModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "VBoxView", "box_style": "", "children": ["IPY_MODEL_e511b4325358464b96ca01c94ec956e1", "IPY_MODEL_6d3f48321df847d5871fbfafb3a04c81", "IPY_MODEL_44db3a2d6b7848f793824992f15b82c5", "IPY_MODEL_e0d33849fa9844919c506448fac54ed1", "IPY_MODEL_3bce8de119db49c391d314c80dabc578", "IPY_MODEL_01721f78316b43a98cae2a45221ca537"], "layout": "IPY_MODEL_f1d997e2c92444998e2ecefdaa13901e"}}, "619e4c2f492141d08e38686b985b89e5": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "ab65f2739eba41d7a6eacfea2245101f": {"model_name": "SliderStyleModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "SliderStyleModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "StyleView", "description_width": "", "handle_color": null}}, "3bce8de119db49c391d314c80dabc578": {"model_name": "IntSliderModel", "model_module": "@jupyter-widgets/controls", "model_module_version": "1.5.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/controls", "_model_module_version": "1.5.0", "_model_name": "IntSliderModel", "_view_count": null, "_view_module": "@jupyter-widgets/controls", "_view_module_version": "1.5.0", "_view_name": "IntSliderView", "continuous_update": true, "description": "R", "description_tooltip": null, "disabled": false, "layout": "IPY_MODEL_619e4c2f492141d08e38686b985b89e5", "max": 500, "min": -500, "orientation": "horizontal", "readout": true, "readout_format": "d", "step": 10, "style": "IPY_MODEL_ab65f2739eba41d7a6eacfea2245101f", "value": 0}}, "8475e7d7f4684e5b9f9b69241b803710": {"model_name": "LayoutModel", "model_module": "@jupyter-widgets/base", "model_module_version": "1.2.0", "state": {"_model_module": "@jupyter-widgets/base", "_model_module_version": "1.2.0", "_model_name": "LayoutModel", "_view_count": null, "_view_module": "@jupyter-widgets/base", "_view_module_version": "1.2.0", "_view_name": "LayoutView", "align_content": null, "align_items": null, "align_self": null, "border": null, "bottom": null, "display": null, "flex": null, "flex_flow": null, "grid_area": null, "grid_auto_columns": null, "grid_auto_flow": null, "grid_auto_rows": null, "grid_column": null, "grid_gap": null, "grid_row": null, "grid_template_areas": null, "grid_template_columns": null, "grid_template_rows": null, "height": null, "justify_content": null, "justify_items": null, "left": null, "margin": null, "max_height": null, "max_width": null, "min_height": null, "min_width": null, "object_fit": null, "object_position": null, "order": null, "overflow": null, "overflow_x": null, "overflow_y": null, "padding": null, "right": null, "top": null, "visibility": null, "width": null}}, "01721f78316b43a98cae2a45221ca537": {"model_name": "OutputModel", "model_module": "@jupyter-widgets/output", "model_module_version": "1.0.0", "state": {"_dom_classes": [], "_model_module": "@jupyter-widgets/output", "_model_module_version": "1.0.0", "_model_name": "OutputModel", "_view_count": null, "_view_module": "@jupyter-widgets/output", "_view_module_version": "1.0.0", "_view_name": "OutputView", "layout": "IPY_MODEL_8475e7d7f4684e5b9f9b69241b803710", "msg_id": "", "outputs": [{"output_type": "stream", "name": "stdout", "text": "There is no groundwater divide in this model domain.\n"}, {"output_type": "display_data", "metadata": {"needs_background": "light"}, "data": {"text/plain": "<Figure size 432x288 with 1 Axes>", "image/png": "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\n"}}]}}}, "version_major": 2, "version_minor": 0}
+</script>
+
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Groundwater_JBook/4_Simulation_Tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By PKY, TR, and, RL<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>

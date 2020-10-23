@@ -1,0 +1,370 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drawdown calculation using equations &#8212; Groundwater I</title>
+    
+  <link rel="stylesheet" href="../../_static/css/index.73d71520a4ca3b99cfee5594769eaaae.css">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="../../_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="../../_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="../../_static/sphinx-book-theme.2d2078699c18a0efb88233928e1cf6ed.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="../../_static/js/index.3da636dd464baa7582d2.js">
+
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/sphinx-book-theme.be0a4a0c39cd630af62a2fcf693f3f06.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.18.0/dist/embed-amd.js"></script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="canonical" href="https://tu-dresden.de/bu/umwelt/hydro/igw/Groundwater_JBook/4_Simulation_Tools/48_Drawdown.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+<!-- Opengraph tags -->
+<meta property="og:url"         content="https://tu-dresden.de/bu/umwelt/hydro/igw/Groundwater_JBook/4_Simulation_Tools/48_Drawdown.html" />
+<meta property="og:type"        content="article" />
+<meta property="og:title"       content="Drawdown calculation using equations" />
+<meta property="og:description" content="Drawdown calculation using equationsTask  A community is installing a new well in a regionally confined aquifer with a transmissivity of 248.5 \frac{m^{2}}{day}" />
+
+
+<meta name="twitter:card" content="summary" />
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="../../index.html">
+  
+  
+  <h1 class="site-logo" id="site-title">Groundwater I</h1>
+  
+</a>
+</div>
+
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../intro.html">
+   The Interactive Groundwater-I Book
+  </a>
+ </li>
+</ul>
+</nav>
+
+ <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="row topbar fixed-top container-xl">
+    <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show">
+    </div>
+    <div class="col pl-2 topbar-main">
+        
+        <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+            data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+            aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+            title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+            <i class="fas fa-bars"></i>
+            <i class="fas fa-arrow-left"></i>
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
+        <div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="../../_sources/Groundwater_JBook/4_Simulation_Tools/48_Drawdown.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+    
+</div>
+        <!-- Source interaction buttons -->
+
+
+        <!-- Full screen (wrap in <a> to have style consistency -->
+        <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                title="Fullscreen mode"><i
+                    class="fas fa-expand"></i></button></a>
+
+        <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/prabhasyadav/Groundwater-I/gh-pages?urlpath=tree/Groundwater_JBook/4_Simulation_Tools/48_Drawdown.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="../../_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+    </div>
+
+    <!-- Table of contents -->
+    <div class="d-none d-md-block col-md-2 bd-toc show">
+        
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Drawdown calculation using equations
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#task">
+   Task
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="drawdown-calculation-using-equations">
+<h1>Drawdown calculation using equations<a class="headerlink" href="#drawdown-calculation-using-equations" title="Permalink to this headline">¶</a></h1>
+</div>
+<div class="section" id="task">
+<h1>Task<a class="headerlink" href="#task" title="Permalink to this headline">¶</a></h1>
+<p>A community is installing a new well in a regionally confined aquifer with a transmissivity of <span class="math notranslate nohighlight">\(248.5 \frac{m^{2}}{day}\)</span> and the storativity of <span class="math notranslate nohighlight">\(0.0002\)</span>. the planned pumping rate is <span class="math notranslate nohighlight">\(4088.24 \frac{m^{3}}{day}\)</span>. There are several nearby wells tapping the same aquifer. and the hydrogeologist in charge needs to know if the new well will cause significant interference with these wells. compute the theoretical drawdown caused by the new well after <span class="math notranslate nohighlight">\(30\)</span> days of continuous pumping at the distances of <span class="math notranslate nohighlight">\(50m\)</span>, <span class="math notranslate nohighlight">\(250m\)</span>, and <span class="math notranslate nohighlight">\(1000m\)</span> .<br></p>
+<div class="highlight-{sidebar}Source notranslate"><div class="highlight"><pre><span></span>&quot;Applied Hydrogeology&quot; by C.W. Fetter
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">scipy.special</span> <span class="k">as</span> <span class="nn">sc</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># A.input</span>
+<span class="n">T</span><span class="o">=</span><span class="mf">248.5</span> <span class="c1">#m^2day Transmissivty</span>
+<span class="n">S</span><span class="o">=</span><span class="mf">0.0002</span> <span class="c1"># Storativity</span>
+<span class="n">Q</span><span class="o">=</span><span class="mf">4088.24</span>  <span class="c1">#m^3/day pumping rate</span>
+<span class="n">t</span><span class="o">=</span><span class="mi">30</span> <span class="c1"># days</span>
+<span class="n">r1</span><span class="o">=</span><span class="mi">50</span>  <span class="c1">#m first distance from the well</span>
+<span class="n">r2</span><span class="o">=</span><span class="mi">250</span>  <span class="c1">#m second distance from the well</span>
+<span class="n">r3</span><span class="o">=</span><span class="mi">1000</span>  <span class="c1">#m third distance from the well</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mA. Given information:</span><span class="se">\033</span><span class="s2">[0m &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transmissiivity = </span><span class="si">{}</span><span class="s2"> m</span><span class="se">\u00b2</span><span class="s2">/d</span><span class="se">\n</span><span class="s2">Storitivity = </span><span class="si">{}</span><span class="s2"> </span><span class="se">\n</span><span class="s2">Pumping rate = </span><span class="si">{}</span><span class="s2"> m</span><span class="se">\u00b3</span><span class="s2">/d</span><span class="se">\n</span><span class="s2">Dispersivity = </span><span class="si">{}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">Time=</span><span class="si">{}</span><span class="s2"> d&quot;</span> <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Q</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;First distance from the well=</span><span class="si">{}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">Second distance from the well=</span><span class="si">{}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">Third distance from the well=</span><span class="si">{}</span><span class="s2"> m&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r3</span><span class="p">),</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># B.calculate</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mB. Calculation of u and w(u) for each distance of r from the well</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">,</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">u1</span><span class="o">=</span> <span class="p">(</span><span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">r1</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">W1</span><span class="o">=-</span><span class="n">sc</span><span class="o">.</span><span class="n">expi</span><span class="p">(</span><span class="n">u1</span><span class="p">)</span>
+<span class="n">s1</span><span class="o">=</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">W1</span><span class="p">)</span>
+
+<span class="n">u2</span><span class="o">=</span> <span class="p">(</span><span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">r2</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">W2</span><span class="o">=-</span><span class="n">sc</span><span class="o">.</span><span class="n">expi</span><span class="p">(</span><span class="n">u2</span><span class="p">)</span>
+<span class="n">s2</span><span class="o">=</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">W2</span><span class="p">)</span>
+
+<span class="n">u3</span><span class="o">=</span> <span class="p">(</span><span class="n">S</span><span class="o">*</span><span class="p">(</span><span class="n">r3</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">T</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+<span class="n">W3</span><span class="o">=-</span><span class="n">sc</span><span class="o">.</span><span class="n">expi</span><span class="p">(</span><span class="n">u3</span><span class="p">)</span>
+<span class="n">s3</span><span class="o">=</span><span class="p">(</span><span class="n">Q</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">T</span><span class="p">)</span><span class="o">*</span><span class="n">W3</span><span class="p">)</span> 
+
+<span class="c1"># C.output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\033</span><span class="s2">[1mC. Output:</span><span class="se">\033</span><span class="s2">[0m&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drawdown for 50 m:&quot;</span><span class="p">,</span> <span class="n">s1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drawdown for 250 m:&quot;</span><span class="p">,</span> <span class="n">s2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Drawdown for 1000 m:&quot;</span><span class="p">,</span> <span class="n">s3</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Based on the output, by increasing distance from the well the drawdown will decresae &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">A. Given information:</span> 
+Transmissiivity = 248.5 m²/d
+Storitivity = 0.0002 
+Pumping rate = 4088.24 m³/d
+Dispersivity = 30 m
+Time=50 d
+First distance from the well=50 m
+Second distance from the well=250 m
+Third distance from the well=1000 m 
+
+<span class=" -Color -Color-Bold">B. Calculation of u and w(u) for each distance of r from the well</span> 
+
+<span class=" -Color -Color-Bold">C. Output:</span>
+Drawdown for 50 m: 13.64017316820474
+Drawdown for 250 m: 9.425551011675893
+Drawdown for 1000 m: 5.787480456133192 
+
+Based on the output, by increasing distance from the well the drawdown will decresae 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shape of the drawdown ner the well: &quot;</span><span class="p">)</span>
+<span class="n">Drawdown</span><span class="o">=</span><span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="n">s3</span><span class="p">)</span>
+<span class="n">Distance</span><span class="o">=</span><span class="p">(</span><span class="n">r1</span><span class="p">,</span> <span class="n">r2</span><span class="p">,</span> <span class="n">r3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">Distance</span><span class="p">,</span> <span class="n">Drawdown</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shape of the drawdown ner the well: 
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f86995db0b8&gt;]
+</pre></div>
+</div>
+<img alt="../../_images/48_Drawdown_4_2.png" src="../../_images/48_Drawdown_4_2.png" />
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./Groundwater_JBook/4_Simulation_Tools"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        </div>
+    </div>
+    
+    
+    <div class='prev-next-bottom'>
+        
+
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By PKY, TR, and, RL<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="../../_static/js/index.3da636dd464baa7582d2.js"></script>
+
+
+    
+  </body>
+</html>
