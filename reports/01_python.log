@@ -1,0 +1,133 @@
+Traceback (most recent call last):
+  File "/home/alexo/anaconda3/lib/python3.6/site-packages/jupyter_cache/executors/utils.py", line 56, in single_nb_execution
+    record_timing=False,
+  File "/home/alexo/anaconda3/lib/python3.6/site-packages/nbclient/client.py", line 1087, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/alexo/anaconda3/lib/python3.6/site-packages/nbclient/util.py", line 74, in wrapped
+    return just_run(coro(*args, **kwargs))
+  File "/home/alexo/anaconda3/lib/python3.6/site-packages/nbclient/util.py", line 53, in just_run
+    return loop.run_until_complete(coro)
+  File "/home/alexo/anaconda3/lib/python3.6/asyncio/base_events.py", line 467, in run_until_complete
+    return future.result()
+  File "/home/alexo/anaconda3/lib/python3.6/site-packages/nbclient/client.py", line 541, in async_execute
+    cell, index, execution_count=self.code_cells_executed + 1
+  File "/home/alexo/anaconda3/lib/python3.6/site-packages/nbclient/client.py", line 832, in async_execute_cell
+    self._check_raise_for_error(cell, exec_reply)
+  File "/home/alexo/anaconda3/lib/python3.6/site-packages/nbclient/client.py", line 740, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply['content'])
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+p1 = pn.pane.Markdown("""
+### Python popularity
+""")
+
+p2 = pn.pane.PNG("images/bg1_f1.png", width="400px") 
+
+p3= pn.pane.Markdown("""</br></br></br>
+
++ _Python_ has become a mainstream computing language. 
++ Details of the plot are [here](shorturl.at/htwQ7). 
++ This all means - it is good to learn to code in _Python_
+""")
+
+p4 = pn.Column(p1,p2)
+
+pn.Row(p4, p3)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mValueError[0m                                Traceback (most recent call last)
+[0;32m<ipython-input-2-022c343852dc>[0m in [0;36m<module>[0;34m[0m
+[1;32m      3[0m """)
+[1;32m      4[0m [0;34m[0m[0m
+[0;32m----> 5[0;31m [0mp2[0m [0;34m=[0m [0mpn[0m[0;34m.[0m[0mpane[0m[0;34m.[0m[0mPNG[0m[0;34m([0m[0;34m"images/bg1_f1.png"[0m[0;34m,[0m [0mwidth[0m[0;34m=[0m[0;34m"400px"[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m      6[0m [0;34m[0m[0m
+[1;32m      7[0m p3= pn.pane.Markdown("""</br></br></br>
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/panel/pane/base.py[0m in [0;36m__init__[0;34m(self, object, **params)[0m
+[1;32m    109[0m             [0mself[0m[0;34m.[0m[0m_type_error[0m[0;34m([0m[0mobject[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    110[0m [0;34m[0m[0m
+[0;32m--> 111[0;31m         [0msuper[0m[0;34m([0m[0mPaneBase[0m[0;34m,[0m [0mself[0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0mobject[0m[0;34m=[0m[0mobject[0m[0;34m,[0m [0;34m**[0m[0mparams[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    112[0m         [0mkwargs[0m [0;34m=[0m [0;34m{[0m[0mk[0m[0;34m:[0m [0mv[0m [0;32mfor[0m [0mk[0m[0;34m,[0m [0mv[0m [0;32min[0m [0mparams[0m[0;34m.[0m[0mitems[0m[0;34m([0m[0;34m)[0m [0;32mif[0m [0mk[0m [0;32min[0m [0mLayoutable[0m[0;34m.[0m[0mparam[0m[0;34m}[0m[0;34m[0m[0m
+[1;32m    113[0m         [0mself[0m[0;34m.[0m[0mlayout[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mdefault_layout[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m**[0m[0mkwargs[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/panel/viewable.py[0m in [0;36m__init__[0;34m(self, **params)[0m
+[1;32m    752[0m         [0;31m# temporary flag denotes panes created for temporary, internal[0m[0;34m[0m[0;34m[0m[0m
+[1;32m    753[0m         [0;31m# use which should be garbage collected once they have been used[0m[0;34m[0m[0;34m[0m[0m
+[0;32m--> 754[0;31m         [0msuper[0m[0;34m([0m[0mReactive[0m[0;34m,[0m [0mself[0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0;34m**[0m[0mparams[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    755[0m         [0mself[0m[0;34m.[0m[0m_processing[0m [0;34m=[0m [0;32mFalse[0m[0;34m[0m[0m
+[1;32m    756[0m         [0mself[0m[0;34m.[0m[0m_events[0m [0;34m=[0m [0;34m{[0m[0;34m}[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/panel/viewable.py[0m in [0;36m__init__[0;34m(self, **params)[0m
+[1;32m    357[0m [0;34m[0m[0m
+[1;32m    358[0m     [0;32mdef[0m [0m__init__[0m[0;34m([0m[0mself[0m[0;34m,[0m [0;34m**[0m[0mparams[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 359[0;31m         [0msuper[0m[0;34m([0m[0mViewable[0m[0;34m,[0m [0mself[0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0;34m**[0m[0mparams[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    360[0m         [0mself[0m[0;34m.[0m[0m_documents[0m [0;34m=[0m [0;34m{[0m[0;34m}[0m[0;34m[0m[0m
+[1;32m    361[0m         [0mself[0m[0;34m.[0m[0m_models[0m [0;34m=[0m [0;34m{[0m[0;34m}[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/panel/viewable.py[0m in [0;36m__init__[0;34m(self, **params)[0m
+[1;32m    213[0m               type(self).sizing_mode is None):
+[1;32m    214[0m             [0mparams[0m[0;34m[[0m[0;34m'sizing_mode'[0m[0;34m][0m [0;34m=[0m [0mparams[0m[0;34m.[0m[0mget[0m[0;34m([0m[0;34m'sizing_mode'[0m[0;34m,[0m [0mconfig[0m[0;34m.[0m[0msizing_mode[0m[0;34m)[0m[0;34m[0m[0m
+[0;32m--> 215[0;31m         [0msuper[0m[0;34m([0m[0mLayoutable[0m[0;34m,[0m [0mself[0m[0;34m)[0m[0;34m.[0m[0m__init__[0m[0;34m([0m[0;34m**[0m[0mparams[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    216[0m [0;34m[0m[0m
+[1;32m    217[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/parameterized.py[0m in [0;36m__init__[0;34m(self, **params)[0m
+[1;32m   2338[0m [0;34m[0m[0m
+[1;32m   2339[0m         [0mself[0m[0;34m.[0m[0mparam[0m[0;34m.[0m[0m_generate_name[0m[0;34m([0m[0;34m)[0m[0;34m[0m[0m
+[0;32m-> 2340[0;31m         [0mself[0m[0;34m.[0m[0mparam[0m[0;34m.[0m[0m_setup_params[0m[0;34m([0m[0;34m**[0m[0mparams[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m   2341[0m         [0mobject_count[0m [0;34m+=[0m [0;36m1[0m[0;34m[0m[0m
+[1;32m   2342[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/parameterized.py[0m in [0;36moverride_initialization[0;34m(self_, *args, **kw)[0m
+[1;32m    989[0m         [0moriginal_initialized[0m[0;34m=[0m[0mparameterized_instance[0m[0;34m.[0m[0minitialized[0m[0;34m[0m[0m
+[1;32m    990[0m         [0mparameterized_instance[0m[0;34m.[0m[0minitialized[0m[0;34m=[0m[0;32mFalse[0m[0;34m[0m[0m
+[0;32m--> 991[0;31m         [0mfn[0m[0;34m([0m[0mparameterized_instance[0m[0;34m,[0m[0;34m*[0m[0margs[0m[0;34m,[0m[0;34m**[0m[0mkw[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    992[0m         [0mparameterized_instance[0m[0;34m.[0m[0minitialized[0m[0;34m=[0m[0moriginal_initialized[0m[0;34m[0m[0m
+[1;32m    993[0m     [0;32mreturn[0m [0moverride_initialization[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/parameterized.py[0m in [0;36m_setup_params[0;34m(self_, **params)[0m
+[1;32m   1200[0m                 [0mself[0m[0;34m.[0m[0mparam[0m[0;34m.[0m[0mwarning[0m[0;34m([0m[0;34m"Setting non-parameter attribute %s=%s using a mechanism intended only for parameters"[0m[0;34m,[0m[0mname[0m[0;34m,[0m[0mval[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m   1201[0m             [0;31m# i.e. if not desc it's setting an attribute in __dict__, not a Parameter[0m[0;34m[0m[0;34m[0m[0m
+[0;32m-> 1202[0;31m             [0msetattr[0m[0;34m([0m[0mself[0m[0;34m,[0m[0mname[0m[0;34m,[0m[0mval[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m   1203[0m [0;34m[0m[0m
+[1;32m   1204[0m     [0;34m@[0m[0mclassmethod[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/parameterized.py[0m in [0;36m_f[0;34m(self, obj, val)[0m
+[1;32m    294[0m             [0minstance_param[0m[0;34m.[0m[0m__set__[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mval[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    295[0m             [0;32mreturn[0m[0;34m[0m[0m
+[0;32m--> 296[0;31m         [0;32mreturn[0m [0mf[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mobj[0m[0;34m,[0m [0mval[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    297[0m     [0;32mreturn[0m [0m_f[0m[0;34m[0m[0m
+[1;32m    298[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/__init__.py[0m in [0;36m__set__[0;34m(self, obj, val)[0m
+[1;32m    621[0m         [0mIf[0m [0mval[0m [0;32mis[0m [0mdynamic[0m[0;34m,[0m [0minitialize[0m [0mit[0m [0;32mas[0m [0ma[0m [0mgenerator[0m[0;34m.[0m[0;34m[0m[0m
+[1;32m    622[0m         """
+[0;32m--> 623[0;31m         [0msuper[0m[0;34m([0m[0mDynamic[0m[0;34m,[0m[0mself[0m[0;34m)[0m[0;34m.[0m[0m__set__[0m[0;34m([0m[0mobj[0m[0;34m,[0m[0mval[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    624[0m [0;34m[0m[0m
+[1;32m    625[0m         [0mdynamic[0m [0;34m=[0m [0mcallable[0m[0;34m([0m[0mval[0m[0;34m)[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/parameterized.py[0m in [0;36m_f[0;34m(self, obj, val)[0m
+[1;32m    294[0m             [0minstance_param[0m[0;34m.[0m[0m__set__[0m[0;34m([0m[0mobj[0m[0;34m,[0m [0mval[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    295[0m             [0;32mreturn[0m[0;34m[0m[0m
+[0;32m--> 296[0;31m         [0;32mreturn[0m [0mf[0m[0;34m([0m[0mself[0m[0;34m,[0m [0mobj[0m[0;34m,[0m [0mval[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    297[0m     [0;32mreturn[0m [0m_f[0m[0;34m[0m[0m
+[1;32m    298[0m [0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/parameterized.py[0m in [0;36m__set__[0;34m(self, obj, val)[0m
+[1;32m    821[0m             [0mval[0m [0;34m=[0m [0mself[0m[0;34m.[0m[0mset_hook[0m[0;34m([0m[0mobj[0m[0;34m,[0m[0mval[0m[0;34m)[0m[0;34m[0m[0m
+[1;32m    822[0m [0;34m[0m[0m
+[0;32m--> 823[0;31m         [0mself[0m[0;34m.[0m[0m_validate[0m[0;34m([0m[0mval[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    824[0m [0;34m[0m[0m
+[1;32m    825[0m         [0m_old[0m [0;34m=[0m [0mNotImplemented[0m[0;34m[0m[0m
+
+[0;32m~/anaconda3/lib/python3.6/site-packages/param/__init__.py[0m in [0;36m_validate[0;34m(self, val)[0m
+[1;32m    934[0m [0;34m[0m[0m
+[1;32m    935[0m         [0;32mif[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mval[0m[0;34m,[0m[0mint[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+[0;32m--> 936[0;31m             [0;32mraise[0m [0mValueError[0m[0;34m([0m[0;34m"Parameter '%s' must be an integer."[0m[0;34m%[0m[0mself[0m[0;34m.[0m[0mname[0m[0;34m)[0m[0;34m[0m[0m
+[0m[1;32m    937[0m [0;34m[0m[0m
+[1;32m    938[0m         [0;32mif[0m [0mself[0m[0;34m.[0m[0mstep[0m [0;32mis[0m [0;32mnot[0m [0;32mNone[0m [0;32mand[0m [0;32mnot[0m [0misinstance[0m[0;34m([0m[0mself[0m[0;34m.[0m[0mstep[0m[0;34m,[0m [0mint[0m[0;34m)[0m[0;34m:[0m[0;34m[0m[0m
+
+[0;31mValueError[0m: Parameter 'width' must be an integer.
+ValueError: Parameter 'width' must be an integer.
+
